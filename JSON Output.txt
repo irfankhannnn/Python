@@ -1,0 +1,37 @@
+1: Output
+{
+    "name": "Irfan", 
+    "roll": 32, 
+    "add": "BKC"
+}
+
+2: Output
+{
+    "name": "Irfan",
+     "gr_no": 24928,
+      "add": "BKC"
+    }
+
+3: Output
+{
+    "fruit": "Apple",
+    "size": "Large",
+    "color": "Red"
+}
+
+4: Output
+[
+    {
+        "name": "Irfan",
+        "age": 23,
+        "add": "BKC"
+    },
+    {
+        "name": "khan",
+        "age": 26
+    },
+    {
+        "name": "Amir",
+        "age": 22
+    }
+]
