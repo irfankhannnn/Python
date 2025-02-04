@@ -1,4 +1,36 @@
-# Example:  fav
+# Key Points:
+#Use json.dump() to write data to a file.
+#Use json.load() to read JSON data from a file.v
+#-------------------------------------------------------------------------------------------------
+# # 1 Example : Read & Access keys:
+# import json
+# file=open("my_json1.json","r")
+# x=file.read()
+# data = json.loads(x)  # Parse the JSON string into a dictionary
+# print()
+
+#------------------------------------------------------------------------------------------------
+
+
+# # 2 example:
+# import json
+# f=open("student.json","r")
+# data=json.load(f)
+# print(data.get("id"))
+
+#----------------------------------------------------------------------------
+
+# # 3 Example: 
+# import json
+# file = open("my_json1.json", "r")
+# # x = file.read()
+# data = json.load(file)  # Parse the JSON string into a dictionary
+# print(data.get("fruit"))  # Access the "fruit" key
+# file.close()
+
+#------------------------------------------------------------------------------
+
+# 4 Example:  fav
 import json
 data="student.json"
 with open(data, "r") as file:
@@ -6,9 +38,31 @@ with open(data, "r") as file:
 print(x.get("id")) # Access ID from student.
 print(x)
 
+#-------------------------------------------------------------------------
+
+# Remove output Ebarat from student.json file: (Data Filtring)
+# import json
+# data_file="student.json"
+# with open (data_file, "r") as f:
+#     data=json.load(f)
+
+# filtered_data = [person for person in data if person["name"] != "Ebarat"]
+# print(filtered_data)
+
+#-------------------------------------------------------------------------------------
+
+# 5 Example for Write json: like json.dump
+
+# import json
+# data={
+#     "name":"Irfan","roll":32,"add":"BKC"
+# }
+# with open("data.json","w") as f:
+#     json.dump(data,f)
 
 #---------------------------------------------------------------------------------------
-# ## Append Data to an Existing JSON File:
+
+# ##Add Data to an Existing JSON File:
 
 import json
 
@@ -21,7 +75,7 @@ with open(data_file, "r") as file:
 # !!! If you use same key to replace replace automaticaly: !!!
 
 # Add new data
-data["new_key"] = {"new_value":"None","age":22},{"naam":"Dalla"}
+data["new_key"] = {"new_value":"None","age":22},{"naam":"Dalla"} # Replace
   # Or
 data["new_key1"] = "new_value","Add More"
 
@@ -32,7 +86,7 @@ with open(data_file, "w") as file:
 print("Data added successfully!")
 
 #-------------------------------------------------------------------------------
-## Update exixting data:
+## Update or Insert exixting data:   (Insert or update key of key Fav)
 import json
 
 file_name = "student.json"
@@ -41,7 +95,7 @@ file_name = "student.json"
 with open(file_name, "r") as f:
     data = json.load(f)  # Load JSON content into a dictionary
 
-# Step 2: Modify the data
+# Step 2: Modify the data  !!! If you use same key to midify otherwise insert
 data["Ebarat"]["Phone"] = "123456789"
 
 # Step 3: Write the updated data back to the file
@@ -53,7 +107,7 @@ print("Phone number updated successfully!")
 
 #-------------------------------------------------------------------------------
 
-## delete data from json file:
+## delete Key from json file:   main key  (Del Fav)
 
 import json
 
@@ -73,6 +127,49 @@ with open(data, "w") as file:
     json.dump(x, file, indent=4)
     
 print(json.dumps(x, indent=4))
+
+##---------------------------------------------------------------------------------------------
+
+## delete Key from json file: key of key    (Del Fav)
+
+import json
+
+data_file = "student.json"
+
+# Load JSON from file
+with open(data_file, "r") as f:
+    data = json.load(f)
+
+# data ["Ebarata"] .pop("City")
+         # OR
+if "City" in data["Ebarata"]:      # Fav
+    del data["Ebarata"]["City"]
+
+# Save the updated JSON back to the file
+with open(data_file, "w") as f:
+    json.dump(data, f, indent=4)
+
+print(data)
+
+##---------------------------------------------------------------------------------------------------
+## Delete key of key of key:  (Del Fav)
+import json
+
+data_file = "student.json"
+
+# Load JSON from file
+with open(data_file, "r") as f:
+    data = json.load(f)
+
+if "ERR" in data["Anmals"]["Elephant"]:
+    del data["Anmals"]["Elephant"]["ERR"]
+# Save the updated JSON back to the file
+with open(data_file, "w") as f:
+    json.dump(data, f, indent=4)
+
+print(data)
+
+
 
 #-----------------------------------------------------------------------------------------------
 ## Rename key of Json file:
@@ -115,6 +212,26 @@ with open(data_file, "w") as f:
 
 print("Key renamed successfully.")
 
+##----------------------------------------------------------------------------------------------------
+## Make a Copy for other New Mai key Name:
+
+import json
+
+data_file = "student.json"
+
+# Load JSON from file
+with open(data_file, "r") as f:
+    data = json.load(f)
+
+if 'Ebarat' in data:
+    data["Ebarata"]=data["Ebarat"]
+
+# Save the updated JSON back to the file
+with open(data_file, "w") as f:
+    json.dump(data, f, indent=4)
+
+print("Key renamed successfully.")
+
 
 
 
@@ -140,3 +257,42 @@ print(x["sales"])       # Ex 2
 
 
 ## Insert Data (Remain) !!!
+
+#################################### SELF PRACTICE #####################################
+
+# Create blank json file:
+import json
+data=""
+with open ("Irfan.json","w")as f:
+    x=json.dumps(f)
+
+# Fill Data on Exixting file: !!!(Data will be replaced !)
+import json
+old_file="Irfan.json"
+data={  "name":"Irfan", "gr_no":24928,"add":"BKC"
+}
+with open (old_file,"w") as f:
+    x=json.dump(data,f)
+#access data kay from file:
+with open ("Irfan.json","r") as ff:
+   j=json.load(ff)
+   print(j.get("name"))
+
+#--------------------------------------------------------------------------------
+
+## Inser Data on Exixting file: !!!( If you use same key data will be replace )
+import json
+file="student.json"
+with open (file,"r") as f:
+    x=json.load(f)
+
+x["Fruits"]={"aaple":763,"Grapes":665,"Pine":652}
+
+with open (file,"w") as f:
+    json.dump(x,f,indent=4)
+print("Pine Price:")
+print(x["Fruits"]["Pine"]) # Pine Price
+# print(x)
+
+#---------------------------------------------------------------------------------------
+
